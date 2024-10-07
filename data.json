@@ -1,0 +1,22 @@
+{
+  "reminders": [
+    {
+      "id": 1,
+      "text": "Small Actions + Patience + Time = Reality",
+      "dateAdded": "10/7/24, 10:23 PM",
+      "favorite": false
+    },
+    {
+      "id": 2,
+      "text": "Get it wrong faster",
+      "dateAdded": "10/7/24, 10:35 PM",
+      "favorite": true
+    },
+    {
+      "id": 3,
+      "text": "Use fear as a guide, not as a deterrent.",
+      "dateAdded": "10/7/24, 10:42 PM",
+      "favorite": false
+    }
+  ]
+}
