@@ -12,11 +12,13 @@ To set up and run this project locally, follow these steps:
    git clone <repository-url>
    cd <repository-directory>
    ```
+
 2. **Install dependencies:**
 
    ```bash
    npm install
    ```
+
 3. **Empty the data.json file (optional):**
 
    ```json
@@ -24,11 +26,13 @@ To set up and run this project locally, follow these steps:
      "reminders": []
    }
    ```
+
 4. **Run the server:**
 
    ```bash
    npm start
    ```
+
 5. **Open the application:**
 
-    The server will run on[http://localhost:3000](http://localhost:3000).
+   The server will run on[http://localhost:3001](http://localhost:3001).

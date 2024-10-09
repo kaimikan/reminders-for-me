@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/reminders';
+const API_URL = 'http://localhost:3001/reminders';
 
 document.getElementById('searchBar').addEventListener('input', loadReminders);
 document
