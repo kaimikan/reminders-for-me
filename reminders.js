@@ -4,6 +4,9 @@ document.getElementById('searchBar').addEventListener('input', loadReminders);
 document
   .getElementById('favoritesToggle')
   .addEventListener('change', loadReminders);
+document.getElementById('goBack').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
 
 async function loadReminders() {
   const searchTerm = document.getElementById('searchBar').value.toLowerCase();
@@ -34,11 +37,29 @@ function displayReminders(reminders) {
 
   reminders.forEach((reminder) => {
     const listItem = document.createElement('li');
-    listItem.textContent = `${reminder.text} (Added on: ${reminder.dateAdded})`;
+
+    const leftSide = document.createElement('div');
+    leftSide.classList.add('leftListItem');
+
+    const textSide = document.createElement('div');
+    textSide.classList.add('textListItem');
+
+    const rightSide = document.createElement('div');
+    rightSide.classList.add('rightListItem');
+
+    const reminderSpan = document.createElement('span');
+    reminderSpan.classList.add('reminderText');
+    reminderSpan.textContent = `${reminder.text}`;
+
+    const dateSpan = document.createElement('span');
+    dateSpan.classList.add('reminderDate');
+    dateSpan.textContent = `${reminder.dateAdded}`;
 
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit';
-    editBtn.addEventListener('click', () => editReminder(reminder.id));
+    editBtn.addEventListener('click', () =>
+      editReminder(reminder.id, reminder.text)
+    );
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
@@ -51,15 +72,21 @@ function displayReminders(reminders) {
       toggleFavorite(reminder.id, favoriteToggle.checked)
     );
 
-    listItem.appendChild(editBtn);
-    listItem.appendChild(deleteBtn);
-    listItem.appendChild(favoriteToggle);
+    leftSide.appendChild(favoriteToggle);
+    textSide.appendChild(reminderSpan);
+    textSide.appendChild(dateSpan);
+    leftSide.appendChild(textSide);
+    rightSide.appendChild(editBtn);
+    rightSide.appendChild(deleteBtn);
+
+    listItem.appendChild(leftSide);
+    listItem.appendChild(rightSide);
     reminderList.appendChild(listItem);
   });
 }
 
-async function editReminder(id) {
-  const newText = prompt('Edit your reminder:');
+async function editReminder(id, text) {
+  const newText = prompt('Edit your reminder:', text);
   if (newText) {
     try {
       await fetch(`${API_URL}/${id}`, {
